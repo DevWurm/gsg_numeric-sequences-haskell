@@ -1,4 +1,8 @@
-module Sequences.General where
+module Sequences.General (
+    Sequence,
+    newRecSequence,
+    newExpSequence
+) where
 
 type Sequence a = [a]
 
