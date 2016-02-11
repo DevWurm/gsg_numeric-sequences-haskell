@@ -1,3 +1,6 @@
 # IntelliJ project files
 .idea
 *.iml
+
+# Build Files
+dist
