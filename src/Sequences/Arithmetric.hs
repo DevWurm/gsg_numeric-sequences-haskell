@@ -1,4 +1,4 @@
-module Sequences.Arithmetic (
+module Sequences.Arithmetric (
     newRecArSequence,
     newExpArSequence
 ) where
