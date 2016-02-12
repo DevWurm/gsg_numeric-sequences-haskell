@@ -11,3 +11,6 @@ newRecSequence a0 f = a0 : map f (newRecSequence a0 f)
 
 newExpSequence :: (Real a) => (Integer -> a) -> Sequence a
 newExpSequence f = map f [1 .. ]
+
+sumUntil :: (Real a) => Int -> Sequence a -> a
+sumUntil n = sum . take n
