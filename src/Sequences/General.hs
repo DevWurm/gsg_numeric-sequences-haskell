@@ -1,7 +1,9 @@
 module Sequences.General (
     Sequence,
     newRecSequence,
-    newExpSequence
+    newExpSequence,
+    sumUntil,
+    partialSumSequence
 ) where
 
 type Sequence a = [a]
