@@ -33,7 +33,7 @@ limit :: (Real a) => Sequence a -> Double -> Int -> Int -> Maybe Double
 limit seq eps af nmax = let
                             ssqs = subseqs af seq
                             ssqsInRange = take nmax ssqs
-                            ssqsInEps = filter (\ssq -> (listDiff ssq) > eps) ssqsInRange
+                            ssqsInEps = filter (\ssq -> (listDiff ssq) < eps) ssqsInRange
                         in
                             if (null ssqsInEps) then
                                 Nothing
