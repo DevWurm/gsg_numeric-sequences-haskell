@@ -1,12 +1,12 @@
 module Sequences.Arithmetric (
-    newRecArSequence,
-    newExpArSequence
+    recArSequence,
+    expArSequence
 ) where
 
 import Sequences.General
 
-newRecArSequence :: (Real a) => a -> a -> Sequence a
-newRecArSequence a0 p = newRecSequence a0 (+p)
+recArSequence :: (Real a) => a -> a -> Sequence a
+recArSequence a0 p = recSequence a0 (+p)
 
-newExpArSequence :: (Real a) => a -> a -> Sequence a
-newExpArSequence a0 p = newExpSequence (\n -> a0 + (fromInteger n) * p)
+expArSequence :: (Real a) => a -> a -> Sequence a
+expArSequence a0 p = expSequence (\n -> a0 + (fromInteger n) * p)

@@ -1,12 +1,12 @@
 module Sequences.Geometric (
-    newRecGeoSequence,
-    newExpGeoSequence
+    recGeoSequence,
+    expGeoSequence
 ) where
 
 import Sequences.General
 
-newRecGeoSequence :: (Real a) => a -> a -> Sequence a
-newRecGeoSequence a0 q = newRecSequence a0 (*q)
+recGeoSequence :: (Real a) => a -> a -> Sequence a
+recGeoSequence a0 q = recSequence a0 (*q)
 
-newExpGeoSequence :: (Real a) => a -> a -> Sequence a
-newExpGeoSequence a0 q = newExpSequence (\n -> a0 * q^n)
+expGeoSequence :: (Real a) => a -> a -> Sequence a
+expGeoSequence a0 q = expSequence (\n -> a0 * q^n)
