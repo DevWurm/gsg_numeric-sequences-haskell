@@ -3,7 +3,8 @@ module Sequences.General (
     newRecSequence,
     newExpSequence,
     sumUntil,
-    partialSumSequence
+    partialSumSequence,
+    limit
 ) where
 
 type Sequence a = [a]
@@ -27,3 +28,23 @@ partialSumSequence seq = let
                                  provided sequence. This list is equivalent to the partial sum sequence of the provided
                                  sequence. -}
                               map ($ seq) sumFunctions
+
+limit :: (Real a) => Sequence a -> Double -> Int -> Int -> Maybe Double
+limit seq eps af nmax = let
+                            ssqs = subseqs af seq
+                            ssqsInRange = take nmax ssqs
+                            ssqsInEps = filter (\ssq -> (listDiff ssq) > eps) ssqsInRange
+                        in
+                            if (null ssqsInEps) then
+                                Just . average . head $ ssqsInEps
+                            else
+                                Nothing
+                        where
+                            listDiff :: (Real a) => [a] -> Double
+                            listDiff xs = realToFrac ((maximum xs) - (minimum xs))
+
+subseqs :: (Real a) => Int -> Sequence a -> [Sequence a]
+subseqs n seq = (take n seq) : (subseqs n . tail $ seq)
+
+average :: (Real a) => [a] -> Double
+average xs = (realToFrac . sum $ xs) / (fromIntegral . length $ xs)
