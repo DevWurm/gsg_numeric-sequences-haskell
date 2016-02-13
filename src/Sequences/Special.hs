@@ -1,4 +1,9 @@
-module Sequences.Special where
+module Sequences.Special (
+    gs1,
+    gs2,
+    z,
+    f
+) where
 
 import Sequences.General
 
