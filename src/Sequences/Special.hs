@@ -23,9 +23,12 @@ fac n | n > 0 = n * (fac (n - 1))
 
 f :: Sequence Double
 f = expSequence (\n -> let
-                            intN = fromInteger n
-                          in
-                            (dFibs !! intN) / (dFibs !! (intN + 1)))
+                            {- n is starting at 1 but fibs list is starting at 0, so n needs to be converted to be
+                            zero based. (!!) operator only accepts Int arguments. Because n is from type Integer
+                            it needs to be converted. -}
+                            zeroBasedIntN = fromInteger (n - 1) --
+                       in
+                            (dFibs !! zeroBasedIntN) / (dFibs !! (zeroBasedIntN + 1)))
     where
         dFibs :: Sequence Double
         dFibs = map fromInteger fibs
