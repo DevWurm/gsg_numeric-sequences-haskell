@@ -36,9 +36,9 @@ limit seq eps af nmax = let
                             ssqsInEps = filter (\ssq -> (listDiff ssq) > eps) ssqsInRange
                         in
                             if (null ssqsInEps) then
-                                Just . average . head $ ssqsInEps
-                            else
                                 Nothing
+                            else
+                                Just . average . head $ ssqsInEps
                         where
                             listDiff :: (Real a) => [a] -> Double
                             listDiff xs = realToFrac ((maximum xs) - (minimum xs))
