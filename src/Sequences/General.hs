@@ -31,25 +31,22 @@ partialSumSequence seq = let
 
 limit :: (Real a) => Sequence a -> Double -> Int -> Int -> Maybe Double
 limit seq eps af nmax = let
-			    nsInRange = take nmax seq
-			in
-			    calcLimit nsInRange eps af
-			    where
-			        calcLimit :: (Real a) => [a] -> Double -> Int -> Maybe Double
-			        calcLimit xs eps af | length xs < af = Nothing
-                                                    | otherwise = let
-			                                              testList = take af seq
-                                                                  in
-			    		                              if (listDiff testList) < eps then
-			                                                  Just . average $ testList
-			    		                              else
-					                                  calcLimit (tail seq) eps af
-                                                    where
-                                                        listDiff :: (Real a) => [a] -> Double
-                                                        listDiff xs = realToFrac ((maximum xs) - (minimum xs))
-
- 
-
+                            nsInRange = take nmax seq
+                        in
+                            calcLimit nsInRange eps af
+                        where
+                            calcLimit :: (Real a) => [a] -> Double -> Int -> Maybe Double
+                            calcLimit xs eps af | length xs < af = Nothing
+                                                | otherwise =   let
+                                                                    testList = take af seq
+                                                                in
+                                                                    if (listDiff testList) < eps then
+                                                                        Just . average $ testList
+                                                                    else
+                                                                        calcLimit (tail seq) eps af
+                                                                where
+                                                                    listDiff :: (Real a) => [a] -> Double
+                                                                    listDiff xs = realToFrac ((maximum xs) - (minimum xs))
 
 average :: (Real a) => [a] -> Double
 average xs = (realToFrac . sum $ xs) / (fromIntegral . length $ xs)
