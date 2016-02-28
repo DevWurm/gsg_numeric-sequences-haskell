@@ -30,23 +30,17 @@ partialSumSequence seq = let
                               map ($ seq) sumFunctions
 
 limit :: (Real a) => Sequence a -> Double -> Int -> Int -> Maybe Double
-limit seq eps af nmax = let
-                            nsInRange = take nmax seq
+limit seq eps nf nmax = let
+                            {- Take the last nf elements of seq in the range until nmax-}
+                            testList = take nf . drop (nmax - nf) $ seq
                         in
-                            calcLimit nsInRange eps af
+                            if listDiff testList < eps then
+                                Just . average $ testList
+                            else
+                                Nothing
                         where
-                            calcLimit :: (Real a) => [a] -> Double -> Int -> Maybe Double
-                            calcLimit xs eps af | length xs < af = Nothing
-                                                | otherwise =   let
-                                                                    testList = take af seq
-                                                                in
-                                                                    if (listDiff testList) < eps then
-                                                                        Just . average $ testList
-                                                                    else
-                                                                        calcLimit (tail seq) eps af
-                                                                where
-                                                                    listDiff :: (Real a) => [a] -> Double
-                                                                    listDiff xs = realToFrac ((maximum xs) - (minimum xs))
+                            listDiff :: (Real a) => [a] -> Double
+                            listDiff ns = realToFrac $ maximum ns - minimum ns
 
 average :: (Real a) => [a] -> Double
 average xs = (realToFrac . sum $ xs) / (fromIntegral . length $ xs)
