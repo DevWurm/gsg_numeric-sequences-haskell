@@ -4,3 +4,6 @@
 
 # Build Files
 dist
+*.o
+*.hi
+src/Main
