@@ -16,7 +16,8 @@ module Interface.Sequence (
                               putStrLn "<2> Bestimmte Anzahl von Elementen angeben"
                               putStrLn "<3> Summe einer bestimmten Anzahl von Elementen ausgeben"
                               putStrLn "<4> Grenzwert suchen"
-                              putStrLn "<5> Beenden"
+                              putStrLn "<5> Partialsummenfolge bilden"
+                              putStrLn "<6> Beenden"
                               putStr "Auswahl: "
                               option <- getLine
                               state <- performAction seq option
@@ -65,4 +66,7 @@ module Interface.Sequence (
                                              print $ limit seq eps nf nmax
                                              return Redo
                                 output `catch` (\(e :: SomeException) -> return Redo)
+  performAction seq ('5':_) = do
+                                outputSequenceMenue $ partialSumSequence seq
+                                return Redo
   performAction _ _ = return Done
