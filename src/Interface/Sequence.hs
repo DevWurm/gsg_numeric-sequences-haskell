@@ -18,32 +18,35 @@ module Interface.Sequence (
                               putStrLn "<4> Beenden"
                               putStr "Auswahl: "
                               option <- getLine
-                              state <- handleOption seq option
+                              state <- performAction seq option
                               when (state == Redo) $ outputSequenceMenue seq
 
-  handleOption :: (Real a, Show a) => Sequence a -> String -> IO MenueState
-  handleOption seq optionStr = do
-                                 let
-                                  option = read optionStr
-                                 performAction seq option `catch` (\(e :: SomeException) -> return Done)
-
-  performAction :: (Real a, Show a) => Sequence a -> Int -> IO MenueState
-  performAction seq 1 = do
-                          putStr "Elementnummer: "
-                          elementStr <- getLine
-                          let
-                            element = read elementStr
-                          ((print $ seq !! element) >> (return Redo)) `catch` (\(e :: SomeException) -> return Redo)
-  performAction seq 2 = do
-                          putStr "Anzahl von Elementen: "
-                          ammountStr <- getLine
-                          let
-                            ammount = read ammountStr
-                          ((print $ take ammount seq) >> (return Redo)) `catch` (\(e :: SomeException) -> return Redo)
-  performAction seq 3 = do
-                          putStr "Anzahl von Elementen: "
-                          ammountStr <- getLine
-                          let
-                            ammount = read ammountStr
-                          ((print $ sumUntil ammount seq) >> (return Redo)) `catch` (\(e :: SomeException) -> return Redo)
+  performAction :: (Real a, Show a) => Sequence a -> String -> IO MenueState
+  performAction seq ('1':_) = do
+                                putStr "Elementnummer: "
+                                elementStr <- getLine
+                                let
+                                  element = read elementStr
+                                  output = do
+                                              print $ seq !! element
+                                              return Redo
+                                output `catch` (\(e :: SomeException) -> return Redo)
+  performAction seq ('2':_) = do
+                                putStr "Anzahl von Elementen: "
+                                ammountStr <- getLine
+                                let
+                                  ammount = read ammountStr
+                                  output = do
+                                              print $ take ammount seq
+                                              return Redo
+                                output `catch` (\(e :: SomeException) -> return Redo)
+  performAction seq ('3':_) = do
+                                putStr "Anzahl von Elementen: "
+                                ammountStr <- getLine
+                                let
+                                  ammount = read ammountStr
+                                  output = do
+                                              print $ sumUntil ammount seq
+                                              return Redo
+                                output `catch` (\(e :: SomeException) -> return Redo)
   performAction _ _ = return Done
