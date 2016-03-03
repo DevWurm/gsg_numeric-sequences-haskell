@@ -19,6 +19,7 @@ module Interface.Special (
                    putStrLn "<5> Beenden"
                    putStr "Auswahl: "
                    option <- getLine
+                   putChar '\n'
                    state <- handleOption option
                    when (state == Redo) specialMenue
 

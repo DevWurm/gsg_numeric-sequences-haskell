@@ -19,6 +19,7 @@ module Interface.ArGeo (
                   putStrLn "<3> Beenden"
                   putStr "Auswahl: "
                   option <- getLine
+                  putChar '\n'
                   state <- handleOption option
                   when (state == Redo) arGeoMenue
 
@@ -39,6 +40,7 @@ module Interface.ArGeo (
                        putStrLn "<3> Beenden"
                        putStr "Auswahl: "
                        option <- getLine
+                       putChar '\n'
                        case (head option) of
                          '1' -> outputRecArSequence
                          '2' -> outputExpArSequence
@@ -56,6 +58,7 @@ module Interface.ArGeo (
                             p = read pStr
                             output = outputSequenceMenue $ recArSequence a0 p
                           output `catch` (\(e :: SomeException) -> putStrLn "Parameter konnten nicht in Zahlen umgewandelt werden")
+                          putChar '\n'
 
   outputExpArSequence :: IO ()
   outputExpArSequence = do
@@ -69,6 +72,7 @@ module Interface.ArGeo (
                             p = read pStr
                             output = outputSequenceMenue $ expArSequence a0 p
                           output `catch` (\(e :: SomeException) -> putStrLn "Parameter konnten nicht in Zahlen umgewandelt werden")
+                          putChar '\n'
 
   outputGeoSequence :: IO ()
   outputGeoSequence = do
@@ -78,6 +82,7 @@ module Interface.ArGeo (
                          putStrLn "<3> Beenden"
                          putStr "Auswahl: "
                          option <- getLine
+                         putChar '\n'
                          case (head option) of
                            '1' -> outputRecGeoSequence
                            '2' -> outputExpGeoSequence
@@ -95,6 +100,7 @@ module Interface.ArGeo (
                             q = read qStr
                             output = outputSequenceMenue $ recGeoSequence a0 q
                           output `catch` (\(e :: SomeException) -> putStrLn "Parameter konnten nicht in Zahlen umgewandelt werden")
+                          putChar '\n'
 
   outputExpGeoSequence :: IO ()
   outputExpGeoSequence = do
@@ -108,3 +114,4 @@ module Interface.ArGeo (
                               q = read qStr
                               output = outputSequenceMenue $ expGeoSequence a0 q
                             output `catch` (\(e :: SomeException) -> putStrLn "Parameter konnten nicht in Zahlen umgewandelt werden")
+                            putChar '\n'

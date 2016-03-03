@@ -20,6 +20,7 @@ module Interface.Sequence (
                               putStrLn "<6> Beenden"
                               putStr "Auswahl: "
                               option <- getLine
+                              putChar '\n'
                               state <- performAction seq option
                               when (state == Redo) $ outputSequenceMenue seq
 
@@ -31,6 +32,7 @@ module Interface.Sequence (
                                   element = read elementStr
                                   output = do
                                               print $ seq !! element
+                                              putChar '\n'
                                               return Redo
                                 output `catch` (\(e :: SomeException) -> return Redo)
   performAction seq ('2':_) = do
@@ -40,6 +42,7 @@ module Interface.Sequence (
                                   ammount = read ammountStr
                                   output = do
                                               print $ take ammount seq
+                                              putChar '\n'
                                               return Redo
                                 output `catch` (\(e :: SomeException) -> return Redo)
   performAction seq ('3':_) = do
@@ -49,6 +52,7 @@ module Interface.Sequence (
                                   ammount = read ammountStr
                                   output = do
                                               print $ sumUntil ammount seq
+                                              putChar '\n'
                                               return Redo
                                 output `catch` (\(e :: SomeException) -> return Redo)
   performAction seq ('4':_) = do
@@ -64,9 +68,11 @@ module Interface.Sequence (
                                   nmax = read nmaxStr
                                   output = do
                                              print $ limit seq eps nf nmax
+                                             putChar '\n'
                                              return Redo
                                 output `catch` (\(e :: SomeException) -> return Redo)
   performAction seq ('5':_) = do
                                 outputSequenceMenue $ partialSumSequence seq
+                                putChar '\n'
                                 return Redo
   performAction _ _ = return Done
