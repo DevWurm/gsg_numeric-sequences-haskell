@@ -6,6 +6,7 @@ import Interface.General
 import Interface.ArGeo
 import Interface.Special
 import Control.Monad
+import System.IO
 
 topMenue :: IO ()
 topMenue = do
@@ -13,6 +14,7 @@ topMenue = do
                putStrLn "<2> Operationen mit speziellen Zahlenfolgen"
                putStrLn "<3> Beenden"
                putStr "Menüpunkt: "
+               hFlush stdout
                option <- getLine
                putChar '\n'
                state <- handleOption option

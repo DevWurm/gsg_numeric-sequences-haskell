@@ -8,6 +8,7 @@ module Interface.Special (
   import Interface.Sequence
   import Sequences.Special
   import Control.Monad
+  import System.IO
 
   specialMenue :: IO ()
   specialMenue = do
@@ -18,6 +19,7 @@ module Interface.Special (
                    putStrLn "<4> Folge f"
                    putStrLn "<5> Beenden"
                    putStr "Auswahl: "
+                   hFlush stdout
                    option <- getLine
                    putChar '\n'
                    state <- handleOption option

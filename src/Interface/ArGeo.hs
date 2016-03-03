@@ -10,6 +10,7 @@ module Interface.ArGeo (
   import Sequences.Geometric
   import Control.Monad
   import Control.Exception
+  import System.IO
 
   arGeoMenue :: IO ()
   arGeoMenue = do
@@ -18,6 +19,7 @@ module Interface.ArGeo (
                   putStrLn "<2> Geometrische Folge"
                   putStrLn "<3> Beenden"
                   putStr "Auswahl: "
+                  hFlush stdout
                   option <- getLine
                   putChar '\n'
                   state <- handleOption option
@@ -39,6 +41,7 @@ module Interface.ArGeo (
                        putStrLn "<2> Explizite Definition"
                        putStrLn "<3> Beenden"
                        putStr "Auswahl: "
+                       hFlush stdout
                        option <- getLine
                        putChar '\n'
                        case (head option) of
@@ -50,8 +53,10 @@ module Interface.ArGeo (
   outputRecArSequence = do
                           putStrLn "Rekursive Arithmetische Folge"
                           putStr "Parameter a0: "
+                          hFlush stdout
                           a0Str <- getLine
                           putStr "Parameter p: "
+                          hFlush stdout
                           pStr <- getLine
                           let
                             a0 = read a0Str
@@ -64,8 +69,10 @@ module Interface.ArGeo (
   outputExpArSequence = do
                           putStrLn "Explizite Arithmetische Folge"
                           putStr "Parameter a0: "
+                          hFlush stdout
                           a0Str <- getLine
                           putStr "Parameter p: "
+                          hFlush stdout
                           pStr <- getLine
                           let
                             a0 = read a0Str
@@ -81,6 +88,7 @@ module Interface.ArGeo (
                          putStrLn "<2> Explizite Definition"
                          putStrLn "<3> Beenden"
                          putStr "Auswahl: "
+                         hFlush stdout
                          option <- getLine
                          putChar '\n'
                          case (head option) of
@@ -92,8 +100,10 @@ module Interface.ArGeo (
   outputRecGeoSequence = do
                           putStrLn "Rekursive Geometrische Folge"
                           putStr "Parameter a0: "
+                          hFlush stdout
                           a0Str <- getLine
                           putStr "Parameter q: "
+                          hFlush stdout
                           qStr <- getLine
                           let
                             a0 = read a0Str
@@ -106,8 +116,10 @@ module Interface.ArGeo (
   outputExpGeoSequence = do
                             putStrLn "Explizite Geometrische Folge"
                             putStr "Parameter a0: "
+                            hFlush stdout
                             a0Str <- getLine
                             putStr "Parameter q: "
+                            hFlush stdout
                             qStr <- getLine
                             let
                               a0 = read a0Str
