@@ -80,6 +80,7 @@ module Interface.Sequence (
                                              return Redo
                                 output `catch` (\(e :: SomeException) -> return Redo)
   performAction seq ('5':_) = do
+                                putStrLn "Partialsummenfolge:"
                                 outputSequenceMenue $ partialSumSequence seq
                                 putChar '\n'
                                 return Redo
