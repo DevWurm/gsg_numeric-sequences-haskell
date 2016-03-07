@@ -13,7 +13,7 @@ topMenue = do
                putStrLn "<1> Operationen mit arithmetischen und geometrischen Zahlenfolgen"
                putStrLn "<2> Operationen mit speziellen Zahlenfolgen"
                putStrLn "<3> Beenden"
-               putStr "Menüpunkt: "
+               putStr "Auswahl: "
                hFlush stdout
                option <- getLine
                putChar '\n'
