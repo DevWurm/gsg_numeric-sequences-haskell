@@ -47,7 +47,7 @@ module Interface.ArGeo (
                        case (head option) of
                          '1' -> outputRecArSequence
                          '2' -> outputExpArSequence
-                         '3' -> return ()
+                         _ -> return ()
 
   outputRecArSequence :: IO ()
   outputRecArSequence = do
@@ -94,7 +94,7 @@ module Interface.ArGeo (
                          case (head option) of
                            '1' -> outputRecGeoSequence
                            '2' -> outputExpGeoSequence
-                           '3' -> return ()
+                           _ -> return ()
 
   outputRecGeoSequence :: IO ()
   outputRecGeoSequence = do
