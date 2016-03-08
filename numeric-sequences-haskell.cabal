@@ -1,7 +1,29 @@
 name:              numeric-sequences-haskell
 version:           1.0
+synopsis:          Package for the solutions of the numeric sequences project of the computer science class at GSG Löbau in Haskell
+category:          Academic
 Build-Type:        Simple
 cabal-version:     >= 1.2
+license:           MIT
+license-file:      LICENSE
+copyright:         (c) 2016 DevWurm
+author:            DevWurm
+maintainer:        devwurm@gmx.net
+stability:         stable
+homepage:          https://github.com/DevWurm/numeric-sequences-haskell
+bug-reports:       https://github.com/DevWurm/numeric-sequences-haskell/issues
+
+library 
+  exposed-modules:
+    Sequences.General
+    Sequences.Special
+    Sequences.Arithmetic
+    Sequences.Geometric
+    Interface.ArGeo
+    Interface.General
+    Interface.Sequence
+    Interface.Special
+    Interface.Top
 
 executable numeric-sequences-haskell
   main-is:         Main.hs
